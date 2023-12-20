@@ -13,6 +13,7 @@ import "monaco-themes/themes/Monokai Bright.json";
 import PackagesModel from "./components/PackagesModel";
 
 const CodePenClone = () => {
+  // something: LakshmiChaitanya.123
 
   const { logs, currentRightTab, setLogs } = useContext(CodeContext);
 
@@ -31,10 +32,10 @@ const CodePenClone = () => {
   }, [monaco]);
 
   return (
-    <div>
+    <><div className="hidden md:block">
       <Navbar />
 
-      <div className="md:flex  justify-between">
+      <div className="flex justify-between">
         <CodeTabs />
         <OutputTabs />
       </div>
@@ -42,7 +43,7 @@ const CodePenClone = () => {
         <Panel minSize={20} defaultSize={50}>
           <CodeInput />
         </Panel>
-        <PanelResizeHandle className="text-sm w-[2px] hover:bg-primary md:flex flex-col justify-center"></PanelResizeHandle>
+        <PanelResizeHandle className="text-sm w-[2px] hover:bg-primary flex flex-col justify-center"></PanelResizeHandle>
         <Panel minSize={20} defaultSize={50}>
           <Output />
           <div className={currentRightTab === 0 ? "hidden" : "block"}>
@@ -55,14 +56,16 @@ const CodePenClone = () => {
             <Console
               logs={logs}
               variant="dark"
-              styles={{ BASE_FONT_SIZE: "16px", LOG_BORDER: "white" }}
-            />
+              styles={{ BASE_FONT_SIZE: "16px", LOG_BORDER: "white" }} />
           </div>
         </Panel>
       </PanelGroup>
       <SettingsModel />
       <PackagesModel />
-    </div>
+
+
+    </div><h1 className="text-2xl font-bold text-center flex justify-center items-center h-screen">Sorry 😞, The Code Editor does not work on Mobile Devices</h1></>
+
   );
 };
 
