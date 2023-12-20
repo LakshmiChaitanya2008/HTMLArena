@@ -13,7 +13,6 @@ import "monaco-themes/themes/Monokai Bright.json";
 import PackagesModel from "./components/PackagesModel";
 
 const CodePenClone = () => {
-  // something: LakshmiChaitanya.123
 
   const { logs, currentRightTab, setLogs } = useContext(CodeContext);
 
@@ -35,7 +34,7 @@ const CodePenClone = () => {
     <div>
       <Navbar />
 
-      <div className="flex justify-between">
+      <div className="md:flex  justify-between">
         <CodeTabs />
         <OutputTabs />
       </div>
@@ -43,7 +42,7 @@ const CodePenClone = () => {
         <Panel minSize={20} defaultSize={50}>
           <CodeInput />
         </Panel>
-        <PanelResizeHandle className="text-sm w-[2px] hover:bg-primary flex flex-col justify-center"></PanelResizeHandle>
+        <PanelResizeHandle className="text-sm w-[2px] hover:bg-primary md:flex flex-col justify-center"></PanelResizeHandle>
         <Panel minSize={20} defaultSize={50}>
           <Output />
           <div className={currentRightTab === 0 ? "hidden" : "block"}>

@@ -5,7 +5,7 @@ import useLocalStorageState from "../hooks/useLocalStorageState"
 export const SettingsContext = createContext();
 
 export default function SettingsContextProvider({ children }) {
-  const [theme, setTheme] = useLocalStorageState("");
+  const [theme, setTheme] = useLocalStorageState("dark");
 
   return (
     <SettingsContext.Provider value={{ theme, setTheme }}>
