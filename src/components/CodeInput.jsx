@@ -7,6 +7,7 @@ export default function CodeInput() {
   const { currentFile, handleChange, files } = useContext(CodeContext);
   const { theme } = useContext(SettingsContext);
 
+  console.log(theme)
   return (
     <div className="panel sidebar hover:border-r-2 hover:border-primary p-1">
       <Editor
