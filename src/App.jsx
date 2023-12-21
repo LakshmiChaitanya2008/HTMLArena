@@ -13,7 +13,6 @@ import "monaco-themes/themes/Monokai Bright.json";
 import PackagesModel from "./components/PackagesModel";
 
 const CodePenClone = () => {
-  // something: LakshmiChaitanya.123
 
   const { logs, currentRightTab, setLogs } = useContext(CodeContext);
 
