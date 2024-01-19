@@ -21,6 +21,7 @@ export default function CodeInput() {
     };
   }, []);
 
+  console.log(theme);
   return (
     <div className="panel sidebar hover:border-r-2 hover:border-primary p-1">
       <Editor

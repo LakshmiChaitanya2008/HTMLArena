@@ -67,7 +67,7 @@ const CodePenClone = () => {
   }, [monaco]);
 
   return (
-    <div>
+    <><div className="hidden md:block">
       <Navbar />
 
       <div className="flex justify-between">
@@ -91,14 +91,16 @@ const CodePenClone = () => {
             <Console
               logs={logs}
               variant="dark"
-              styles={{ BASE_FONT_SIZE: "16px", LOG_BORDER: "white" }}
-            />
+              styles={{ BASE_FONT_SIZE: "16px", LOG_BORDER: "white" }} />
           </div>
         </Panel>
       </PanelGroup>
       <SettingsModel />
       <PackagesModel />
-    </div>
+
+
+    </div><h1 className="text-2xl font-bold text-center flex justify-center items-center h-screen">Sorry 😞, The Code Editor does not work on Mobile Devices</h1></>
+
   );
 };
 

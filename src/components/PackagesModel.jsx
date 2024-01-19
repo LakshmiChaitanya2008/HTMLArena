@@ -89,16 +89,16 @@ export default function PackagesModel() {
               </>
             ) : (
               <div>
-                <div className="p-2 border   border-gray-600 rounded-lg my-3">
                   {packages.map((p) => (
-                    <div key={p.name} className="justify-between flex">
-                      <span>{p.name}</span>
-                      <button onClick={() => removePackage(p)}>
-                        <FaTrashAlt className="text-red-600 text-base" />
-                      </button>
+                  <div className="p-2 border   border-gray-600 rounded-lg my-3">
+                      <div key={p.name} className="justify-between flex">
+                        <span>{p.name}</span>
+                        <button onClick={() => removePackage(p)}>
+                          <FaTrashAlt className="text-red-600 text-base" />
+                        </button>
+                      </div>
                     </div>
                   ))}
-                </div>
               </div>
             )}
           </Dialog.Panel>
