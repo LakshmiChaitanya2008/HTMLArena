@@ -13,7 +13,6 @@ import "monaco-themes/themes/Monokai Bright.json";
 import PackagesModel from "./components/PackagesModel";
 
 const CodePenClone = () => {
-  // something: LakshmiChaitanya.123
 
   const { logs, currentRightTab, setLogs } = useContext(CodeContext);
 
@@ -27,7 +26,43 @@ const CodePenClone = () => {
           monaco.editor.defineTheme("monokai-bright", data);
         })
         .then((_) => monaco.editor.setTheme("monokai-bright"));
+
       // monaco.editor.defineTheme("monokai-bright").then(_ => monaco.editor.setMonacoTheme("monokai-bright"));
+      monaco.languages.registerCompletionItemProvider("html", {
+        triggerCharacters: [">"],
+        provideCompletionItems: (model, position) => {
+          const codePre = model.getValueInRange({
+            startLineNumber: position.lineNumber,
+            startColumn: 1,
+            endLineNumber: position.lineNumber,
+            endColumn: position.column,
+          });
+
+          const tag = codePre.match(/.*<(\w+)>$/)?.[1];
+
+          if (!tag) {
+            return;
+          }
+
+          const word = model.getWordUntilPosition(position);
+
+          return {
+            suggestions: [
+              {
+                label: `</${tag}>`,
+                kind: monaco.languages.CompletionItemKind.EnumMember,
+                insertText: `</${tag}>`,
+                range: {
+                  startLineNumber: position.lineNumber,
+                  endLineNumber: position.lineNumber,
+                  startColumn: word.startColumn,
+                  endColumn: word.endColumn,
+                },
+              },
+            ],
+          };
+        },
+      });
     }
   }, [monaco]);
 

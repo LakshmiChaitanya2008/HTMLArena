@@ -88,16 +88,33 @@ export default function CodeContextProvider({ children }) {
       "*"
     );
     if (cssFramework === "scss") {
-      const cssCode = compileString(files["style.css"].value).css;
-
-      iframe?.contentWindow?.postMessage({ type: "css", value: cssCode }, "*");
-    } else if (cssFramework === "less") {
-      less.render(files["style.css"].value, (error, result) => {
-        console.log(result.css);
+      try {
+        const cssCode = compileString(files["style.css"].value).css;
+        {
+          iframe?.contentWindow?.postMessage(
+            { type: "css", value: cssCode },
+            "*"
+          );
+        }
+      } catch {
         iframe?.contentWindow?.postMessage(
-          { type: "css", value: result.css },
+          { type: "css", value: files["style.css"].value },
           "*"
         );
+      }
+    } else if (cssFramework === "less") {
+      less.render(files["style.css"].value, (error, result) => {
+        if (error) {
+          iframe?.contentWindow?.postMessage(
+            { type: "css", value: files["style.css"].value },
+            "*"
+          );
+        } else {
+          iframe?.contentWindow?.postMessage(
+            { type: "css", value: result.css },
+            "*"
+          );
+        }
       });
     } else {
       iframe?.contentWindow?.postMessage(
@@ -134,8 +151,6 @@ export default function CodeContextProvider({ children }) {
     if (!packages.find((p) => p.name === pk.name)) {
       setPackages([...packages, pk]);
     }
-
-    const document = iframe.contentWindow.document;
 
     if (pk.latest.endsWith(".js")) {
       const script = iframe.contentWindow.document.createElement("script");

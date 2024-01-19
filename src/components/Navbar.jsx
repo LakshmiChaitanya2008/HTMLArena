@@ -2,11 +2,6 @@ import React, { useContext } from "react";
 import { TbBuildingCastle, TbSettings } from "react-icons/tb";
 import { VscExtensions } from "react-icons/vsc";
 import { ModelContext } from "../store/ModelContext";
-import { FaGoogle } from "react-icons/fa";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app, firestore } from "../utils/firebase";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
 export default function Navbar() {
   const { setSettingsOpen, setPackagesOpen } = useContext(ModelContext);
 

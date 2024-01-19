@@ -51,7 +51,9 @@ export default function Output() {
         ref={iframeRef}
         className="h-screen bg-white w-full"
         id="output-iframe"
-        title="output"
+        allowFullScreen={true}
+        allow="camera; display-capture; geolocation; microphone; web-share"
+        sandbox="allow-scripts allow-same-origin"
         srcDoc={`
         <html>
         <head>
@@ -60,12 +62,16 @@ export default function Output() {
          
         </style>
         <script type="module">
+        
           console.log("Welcome to HTMLArena! 💪")
           window.addEventListener('message', (event) => {
+            
+
             const { type, value } = event.data;
 
             if (type === 'html') {
               document.body.innerHTML = value;
+              
             }
 
             if(type === "css"){
@@ -73,17 +79,16 @@ export default function Output() {
             }
 
             if(type === "javascript"){
-              const scriptExists = document.body.querySelector("script")
-              if(scriptExists){
-                scriptExists.textContext += value;
-              } else {
+              
                 const scriptEl = document.createElement('script');
                 const textNodeEl = document.createTextNode(value);
                 scriptEl.type = 'module';
                 scriptEl.appendChild(textNodeEl);
                 document.body.appendChild(scriptEl)
-              }
+              
             }
+
+            document.body.innerHtml = document.body.innerHtml
           }, false)
 
           
