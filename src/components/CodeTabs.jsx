@@ -7,7 +7,7 @@ export default function CodeTabs() {
     useContext(CodeContext);
 
   return (
-    <div className="flex">
+    <div className="flex ">
       <button
         className={`bg-primary my-2 mr-1 ml-3 px-3 rounded-lg text-black  ${
           currentFile === "index.html" ? " bg-yellow-500" : ""

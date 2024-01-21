@@ -1,11 +1,11 @@
 import React from "react";
 import { createContext } from "react";
 import { useState } from "react";
-import useLocalStorageState from "../hooks/useLocalStorageState"
+import useLocalStorageState from "../hooks/useLocalStorageState";
 export const SettingsContext = createContext();
 
 export default function SettingsContextProvider({ children }) {
-  const [theme, setTheme] = useLocalStorageState("dark");
+  const [theme, setTheme] = useState("dark");
 
   return (
     <SettingsContext.Provider value={{ theme, setTheme }}>
