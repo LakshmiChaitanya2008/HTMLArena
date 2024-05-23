@@ -1,17 +1,21 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { Hook } from "console-feed";
 import { compileString } from "sass";
 import less from "less";
 import ts from "typescript";
 export const CodeContext = createContext();
 import useLocalStorageState from "../hooks/useLocalStorageState";
+import { firestore } from "../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function CodeContextProvider({ children }) {
+  const [currentArena, setCurrentArena] = useState("");
   const [html, setHtml] = useState("");
   const [css, setCSS] = useState("");
   const [js, setJS] = useState("");
   const [logs, setLogs] = useState([]);
   const [iframe, setIframe] = useState(null);
+
   const [cssFramework, setCssFramework] = useLocalStorageState(
     "cssFramework",
     "css"
@@ -39,6 +43,8 @@ export default function CodeContextProvider({ children }) {
       value: html,
     },
   });
+
+  console.log(currentArena);
 
   const [currentFile, setCurrentFile] = useState("index.html");
   const [autoRun, setAutoRun] = useLocalStorageState("autoRun", false);
@@ -225,6 +231,8 @@ export default function CodeContextProvider({ children }) {
         removePackage,
         getAllPackages,
         packages,
+        currentArena,
+        setCurrentArena,
       }}
     >
       {children}

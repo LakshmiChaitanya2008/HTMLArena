@@ -11,12 +11,17 @@ import SettingsModel from "../components/SettingsModel";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import "monaco-themes/themes/Monokai Bright.json";
 import PackagesModel from "../components/PackagesModel";
+import { useParams } from "react-router-dom";
 
 const Arena = () => {
   const { logs, currentRightTab, setLogs } = useContext(CodeContext);
-
+  const { setCurrentArena, currentArena } = useContext(CodeContext);
+  const { id } = useParams();
   const monaco = useMonaco();
 
+  useEffect(() => {
+    setCurrentArena(id);
+  }, []);
   useEffect(() => {
     if (monaco) {
       console.log(monaco);
@@ -72,6 +77,7 @@ const Arena = () => {
 
         <div className="flex justify-between bg-[#232323]">
           <CodeTabs />
+          {currentArena}
           <OutputTabs />
         </div>
         <PanelGroup direction="horizontal">
