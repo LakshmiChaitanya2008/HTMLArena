@@ -5,7 +5,7 @@ A simple HTML, CSS and Javascript Editor
 <img width="958" alt="image" src="https://github.com/LakshmiChaitanya2008/HTMLArena/assets/72391391/f1b3eebe-06b4-4aba-abec-55fe744adae9">
 
 ### Site
-https://lakshmichaitanya2008.github.io/HTMLArena/
+[https://html-arena.vercel.app/](https://html-arena.vercel.app/)
 
 ## Features
 
